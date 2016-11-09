@@ -7,7 +7,7 @@ GET **/services/existence**
 
 返回JSON，包含
 
-+ username: *USERNAME*
++ username
 + existence: "yes" or "no"
 
 ##### 注册
@@ -16,7 +16,7 @@ POST **/services/usercreation**
 
 接受JSON，包含
 
-+ username: *USERNAME*
++ username
 + password
 
 ##### 登录
@@ -30,7 +30,7 @@ GET **/services/verification**
 
 返回JSON，包含
 
-+ username: *USERNAME*
++ username
 + success: "yes" or "no"
 
 ##### 创建新计数器
