@@ -3,7 +3,7 @@ The core part of plus1.
 ## The API of the server:
 ##### 验证用户名是否存在
 
-GET **/services/existence**
+GET **/services/userexistence**
 
 返回JSON，包含
 
@@ -45,9 +45,24 @@ POST **/services/countercreation**
 + unit
 + creator
 
-##### 获取用户的计数器
+##### 获取用户的所有计数器
 
-GET **/user/{*username*}**
+GET **/users/{*username*}/counters**
+
+返回JSON
+
++ counters
+  + counter
+    + counterId
+    + counterName
+    + value
+    + step
+    + unit
+    + creator
+
+##### 获取一个计数器
+
+GET **/counters/{*counterId*}**
 
 返回JSON
 
@@ -58,6 +73,10 @@ GET **/user/{*username*}**
   + step
   + unit
   + creator
+
+##### 添加已有计数器
+
+POST **/users/{*username*}/{*counterId*}**
 
 ##### 计数加
 
