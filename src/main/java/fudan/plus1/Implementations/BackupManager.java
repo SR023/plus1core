@@ -1,8 +1,8 @@
-package Implementations;
+package fudan.plus1.Implementations;
 import java.util.List;
 
-import Interfaces.AbstractBackupManager;
-import Interfaces.Counter;
+import fudan.plus1.Interfaces.AbstractBackupManager;
+import fudan.plus1.Interfaces.Counter;
 
 /**
  * Created by billlai on 08/Oct/2016.
@@ -17,7 +17,7 @@ class BackupManager implements AbstractBackupManager {
     private BackupManager() {
     }
     public int backup() {
-        List<Counter> counters = Implementations.Plus1System.getInstance().getCounters();
+        List<Counter> counters = fudan.plus1.Implementations.Plus1System.getInstance().getCounters();
         // TODO
         return 0;
     }

@@ -1,8 +1,8 @@
-package Implementations;
+package fudan.plus1.Implementations;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-import Interfaces.Counter;
+import fudan.plus1.Interfaces.Counter;
 class SingleUserCounter implements Counter{
     private final String counterId;
     private final String creator;
@@ -17,7 +17,7 @@ class SingleUserCounter implements Counter{
         this.creator = creator;
     }
 
-    @Override
+    
     public int setCounterInfo
             (String counterName, double value, double step, String unit) {
         this.counterName = counterName;
@@ -27,7 +27,7 @@ class SingleUserCounter implements Counter{
         return 0;
     }
 
-    @Override
+    
     public int count(boolean isMinus) {
         if (isMinus) {
             value -= step;
@@ -36,47 +36,47 @@ class SingleUserCounter implements Counter{
         }
         return 0;
     }
-    @Override
+    
     public int count() {
         return count(false);
     }
 
-    @Override
+    
     public boolean isSingleUserMode() {
         return true;
     }
 
-    @Override
+    
     public String getCounterName() {
         return counterName;
     }
-    @Override
+    
     public double getValue() {
         return value;
     }
-    @Override
+    
     public double getStep() {
         return step;
     }
-    @Override
+    
     public String getUnit() {
         return unit;
     }
-    @Override
+    
     public String getCreator() {
         return creator;
     }
-    @Override
+    
     public String getCounterId() {
         return counterId;
     }
 
-    @Override
+    
     public boolean isThisCounter(String counterId) {
         return this.counterId.equals(counterId);
     }
 
-    @Override
+    
     public boolean isCreatedBy(String username) {
         return this.creator.equals(username);
     }

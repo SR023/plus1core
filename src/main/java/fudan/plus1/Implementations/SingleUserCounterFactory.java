@@ -1,6 +1,6 @@
-package Implementations;
-import Interfaces.AbstractSingleUserCounterFactory;
-import Interfaces.Counter;
+package fudan.plus1.Implementations;
+import fudan.plus1.Interfaces.AbstractSingleUserCounterFactory;
+import fudan.plus1.Interfaces.Counter;
 import java.util.Date;
 import java.util.Random;
 

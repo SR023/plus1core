@@ -1,4 +1,4 @@
-package Interfaces;
+package fudan.plus1.Interfaces;
 import java.util.List;
 import org.junit.*;
 

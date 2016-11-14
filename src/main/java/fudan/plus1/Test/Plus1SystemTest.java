@@ -1,8 +1,7 @@
-package Test;
+package fudan.plus1.Test;
 
-import Implementations.Plus1System;
+import fudan.plus1.Implementations.Plus1System;
 
-//import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import Interfaces.*;
+import fudan.plus1.Interfaces.*;
 
 /**
  * Created by billlai on 09/Oct/2016.
@@ -101,7 +100,7 @@ public class Plus1SystemTest {
         List<Counter> counters = system.getCounters();
         int total = 0;
         int originSize = counters.size();
-        List<String> toDeleteCounterId = new ArrayList<>();
+        List<String> toDeleteCounterId = new ArrayList<String>();
         for (Counter counter : counters) {
             if (!counter.getCounterId().endsWith("0")) {
                 toDeleteCounterId.add(counter.getCounterId());
