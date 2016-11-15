@@ -6,7 +6,7 @@ package fudan.plus1.Interfaces;
 public interface Counter {
     // setter
     int setCounterInfo
-    (String counterName, double value, double step, String unit);
+    (String administrator, String counterName, double value, double step, String unit);
 
     // when looking for some counter
     boolean isThisCounter(String CounterId);
@@ -16,14 +16,10 @@ public interface Counter {
     double getValue();
     double getStep();
     String getUnit();
-    String getCreator();
+    String getAdministrator();
     String getCounterId();
 
     // count
     int count();
     int count(boolean isMinus);
-
-    // others
-    boolean isSingleUserMode();
-    boolean isCreatedBy(String username);
 }

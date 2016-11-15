@@ -1,5 +1,5 @@
 package fudan.plus1.Implementations;
-import fudan.plus1.Interfaces.AbstractSingleUserCounterFactory;
+import fudan.plus1.Interfaces.AbstractCounterFactory;
 import fudan.plus1.Interfaces.Counter;
 import java.util.Date;
 import java.util.Random;
@@ -7,15 +7,15 @@ import java.util.Random;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-class SingleUserCounterFactory implements AbstractSingleUserCounterFactory {
+class CounterFactory implements AbstractCounterFactory {
     private final Random random = new Random(new Date().getTime());
-    private static SingleUserCounterFactory ourInstance = new SingleUserCounterFactory();
+    private static CounterFactory ourInstance = new CounterFactory();
 
-    static SingleUserCounterFactory getInstance() {
+    static CounterFactory getInstance() {
         return ourInstance;
     }
 
-    private SingleUserCounterFactory() {
+    private CounterFactory() {
     }
 
     public Counter createSingleUserCounter

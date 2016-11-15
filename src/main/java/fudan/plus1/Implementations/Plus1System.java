@@ -52,7 +52,7 @@ public class Plus1System implements AbstractSystem {
 
     
     public int createSingleUserCounter(String counterName, double value, double step, String unit) {
-        Counter counter = SingleUserCounterFactory.getInstance().
+        Counter counter = CounterFactory.getInstance().
                 createSingleUserCounter(counterName, value, step, unit);
         return addCounter(counter);
     }
@@ -106,11 +106,6 @@ public class Plus1System implements AbstractSystem {
         Counter counter = findCounter(counterId);
         counters.remove(counter);
         return 0;
-    }
-
-    
-    public int backup() {
-        return BackupManager.getInstance().backup();
     }
 
     

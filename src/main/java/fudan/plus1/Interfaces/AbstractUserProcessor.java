@@ -6,6 +6,8 @@ package fudan.plus1.Interfaces;
 
 public interface AbstractUserProcessor {
     int createUser(String username, String password);
+
     boolean isUsernameAvailable(String username);
+
     int signIn(String username, String password);
 }
