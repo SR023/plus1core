@@ -1,6 +1,5 @@
 package fudan.plus1.Interfaces;
 import java.util.List;
-import org.junit.*;
 
 /**
  * Created by billlai on 08/Oct/2016.
@@ -38,5 +37,5 @@ public interface AbstractSystem {
             String unit);
 
     // getter of Counters
-    List<Counter> getCounters();
+    List<AbstractCounter> getCounters(String username);
 }

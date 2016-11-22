@@ -1,15 +1,10 @@
 package fudan.plus1.Implementations;
 
-import java.util.ArrayList;
 import java.util.List;
 import fudan.plus1.Interfaces.*;
-import fudan.plus1.Kits.*;
 import org.jetbrains.annotations.Nullable;
 
 public class Plus1System implements AbstractSystem {
-    private List<Counter> counters = new ArrayList<Counter>();
-    private String username;
-
     private static Plus1System ourInstance = new Plus1System();
     public static Plus1System getInstance() {
         return ourInstance;
@@ -17,78 +12,39 @@ public class Plus1System implements AbstractSystem {
     private Plus1System() {
     }
 
-    private int addCounter(Counter counter) {
-        counters.add(counter);
-        return 0;
-    }
     @Nullable
-    private Counter findCounter(String counterId) {
-        for (Counter counter : counters) {
-            if (counter.isThisCounter(counterId)) {
-                return counter;
-            }
-        }
+    private AbstractCounter findCounter(String counterId) {
+        // TODO
         return null;
     }
 
     
     public int createUser(String username, String password) {
-        return UserProcessor.getInstance().createUser(username, password);
+        return UserFactory.getInstance().createUser(username, password);
     }
 
     
     public boolean isUsernameAvailable(String username) {
-        return UserProcessor.getInstance().isUsernameAvailable(username);
+        return UserFactory.getInstance().isUsernameAvailable(username);
     }
 
     
     public int signIn(String username, String password) {
-        int signInResult = UserProcessor.getInstance().signIn(username, password);
-        if (signInResult == Finals.SIGN_IN_SUCCEEDED) {
-            this.username = username;
-        }
+        int signInResult = UserFactory.getInstance().signIn(username, password);
         return signInResult;
     }
 
     
-    public int createSingleUserCounter(String counterName, double value, double step, String unit) {
-        Counter counter = CounterFactory.getInstance().
-                createSingleUserCounter(counterName, value, step, unit);
-        return addCounter(counter);
+    public int createCounter(String administrator, String counterName, double value, double step, String unit) {
+        AbstractCounter counter = CounterFactory.getInstance().
+                createCounter(administrator, counterName, value, step, unit);
+        return 0; // TODO
     }
 
     
-    public int createMultiUserCounter
-            (String counterId, String counterPassword,
-             String counterName, double value, double step, String unit) {
-        Counter counter =  MultiUserCounterFactory.getInstance().createMultiUserCounter
-                (counterId, counterPassword, counterName, value, step, unit);
-        addCounter(counter);
+    public int addMultiUserCounter(String username, String counterId) {
+        // TODO
         return 0;
-    }
-
-    
-    public int addMultiUserCounter(String counterId, String counterPassword) {
-        Counter counter = MultiUserCounterFactory.getInstance().
-                addMultiUserCounter(counterId, counterPassword);
-        addCounter(counter);
-        return 0;
-    }
-
-    
-    public boolean isCounterIdLegal(String counterId) {
-        return MultiUserCounterFactory.getInstance().isCounterIdLegal(counterId);
-    }
-
-    
-    public boolean isCounterIdAvailable(String counterId) {
-        return MultiUserCounterFactory.getInstance().isCounterIdAvailable(counterId);
-    }
-
-    
-    public boolean isAbleToAddMultiUserCounter(String counterId, String counterPassword) {
-        return MultiUserCounterFactory.getInstance().
-                isAbleToAddMultiUserCounter(counterId, counterPassword);
     }
 
     
@@ -103,28 +59,28 @@ public class Plus1System implements AbstractSystem {
 
     
     public int deleteCounter(String counterId) {
-        Counter counter = findCounter(counterId);
-        counters.remove(counter);
+        // TODO
         return 0;
     }
 
     
-    public int changeCounterInfo
-            (String counterId, String newCounterName, double value, double step, String unit) {
-        Counter counter = findCounter(counterId);
-        counter.setCounterInfo(newCounterName, value, step, unit);
+    public int changeCounterInfo (
+            String administrator,
+            String counterId,
+            String counterName,
+            double value,
+            double step,
+            String unit) {
+        AbstractCounter abstractCounter = findCounter(counterId);
+        abstractCounter.setCounterInfo(administrator, counterName, value, step, unit);
         return 0;
     }
 
     
-    public List<Counter> getCounters() {
-        return counters;
+    public List<AbstractCounter> getCounters(String username) {
+        return null; // TODO
     }
 
-    
-    public String getUsername() {
-        return username;
-    }
 
     
     public boolean isCounterCreatedByMe(String counterId) {

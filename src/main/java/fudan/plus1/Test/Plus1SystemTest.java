@@ -49,15 +49,15 @@ public class Plus1SystemTest {
             system.createSingleUserCounter("name" + i, i, i, "");
         }
 
-        List<Counter> counters = system.getCounters();
-        assertEquals(100, counters.size());
+        List<AbstractCounter> abstractCounters = system.getAbstractCounters();
+        assertEquals(100, abstractCounters.size());
         for (int i = 0; i < 100; i++) {
-            Counter counter = counters.get(i);
-            assertNotNull(counter.getCounterId());
-            assertEquals("name" + i, counter.getCounterName());
-            assertEquals(i, counter.getValue(), DELTA);
-            assertEquals(i, counter.getStep(), DELTA);
-            assertEquals("", counter.getUnit());
+            AbstractCounter abstractCounter = abstractCounters.get(i);
+            assertNotNull(abstractCounter.getCounterId());
+            assertEquals("name" + i, abstractCounter.getCounterName());
+            assertEquals(i, abstractCounter.getValue(), DELTA);
+            assertEquals(i, abstractCounter.getStep(), DELTA);
+            assertEquals("", abstractCounter.getUnit());
         }
     }
 
@@ -76,59 +76,59 @@ public class Plus1SystemTest {
     }
 
     void testCount() {
-        List<Counter> counters = system.getCounters();
-        for (Counter counter : counters) {
+        List<AbstractCounter> abstractCounters = system.getAbstractCounters();
+        for (AbstractCounter abstractCounter : abstractCounters) {
 
-            double originValue = counter.getValue();
+            double originValue = abstractCounter.getValue();
 
-            system.count(counter.getCounterId());
+            system.count(abstractCounter.getCounterId());
 
-            assertEquals(counter.getValue(), originValue + counter.getStep(), DELTA);
+            assertEquals(abstractCounter.getValue(), originValue + abstractCounter.getStep(), DELTA);
         }
     }
 
     void testCount1() {
-        List<Counter> counters = system.getCounters();
-        for (Counter counter : counters) {
-            double originValue = counter.getValue();
-            system.count(counter.getCounterId(), true);
-            assertEquals(counter.getValue(), originValue - counter.getStep(), DELTA);
+        List<AbstractCounter> abstractCounters = system.getAbstractCounters();
+        for (AbstractCounter abstractCounter : abstractCounters) {
+            double originValue = abstractCounter.getValue();
+            system.count(abstractCounter.getCounterId(), true);
+            assertEquals(abstractCounter.getValue(), originValue - abstractCounter.getStep(), DELTA);
         }
     }
 
     void testDeleteCounter() {
-        List<Counter> counters = system.getCounters();
+        List<AbstractCounter> abstractCounters = system.getAbstractCounters();
         int total = 0;
-        int originSize = counters.size();
+        int originSize = abstractCounters.size();
         List<String> toDeleteCounterId = new ArrayList<String>();
-        for (Counter counter : counters) {
-            if (!counter.getCounterId().endsWith("0")) {
-                toDeleteCounterId.add(counter.getCounterId());
+        for (AbstractCounter abstractCounter : abstractCounters) {
+            if (!abstractCounter.getCounterId().endsWith("0")) {
+                toDeleteCounterId.add(abstractCounter.getCounterId());
                 total++;
             }
         }
         for (String s : toDeleteCounterId) {
             system.deleteCounter(s);
         }
-        assertEquals(counters.size() + total, originSize);
+        assertEquals(abstractCounters.size() + total, originSize);
     }
 
     void testChangeCounterInfo() {
-        List<Counter> counters = system.getCounters();
+        List<AbstractCounter> abstractCounters = system.getAbstractCounters();
         Date date = new Date();
         Random random = new Random(date.getTime());
-        for (Counter counter : counters) {
-            system.changeCounterInfo(counter.getCounterId(),
+        for (AbstractCounter abstractCounter : abstractCounters) {
+            system.changeCounterInfo(abstractCounter.getCounterId(),
                     "" + random.nextInt(10), random.nextDouble(), random.nextDouble(), "" + random.nextInt(10));
-            System.out.println(counter.getCounterId() + " : " + counter.getCounterName() +
-                    " " + counter.getValue() + " " + counter.getStep() + " " + counter.getUnit());
+            System.out.println(abstractCounter.getCounterId() + " : " + abstractCounter.getCounterName() +
+                    " " + abstractCounter.getValue() + " " + abstractCounter.getStep() + " " + abstractCounter.getUnit());
         }
     }
 
     void testIsCounterCreatedByMe() {
-        List<Counter> counters = system.getCounters();
-        for (Counter counter : counters) {
-            assertTrue(system.isCounterCreatedByMe(counter.getCounterId()));
+        List<AbstractCounter> abstractCounters = system.getAbstractCounters();
+        for (AbstractCounter abstractCounter : abstractCounters) {
+            assertTrue(system.isCounterCreatedByMe(abstractCounter.getCounterId()));
         }
     }
 }

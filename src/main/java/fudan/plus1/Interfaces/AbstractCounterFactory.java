@@ -5,9 +5,11 @@ package fudan.plus1.Interfaces;
  */
 
 public interface AbstractCounterFactory {
-    Counter createCounter(String administrator,
-                          String counterName,
-                          double value,
-                          double step,
-                          String unit);
+    AbstractCounter createCounter(String administrator,
+                                  String counterName,
+                                  double value,
+                                  double step,
+                                  String unit);
+
+    AbstractCounter findCounter(String counterId);
 }

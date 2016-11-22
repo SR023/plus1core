@@ -3,7 +3,7 @@ package fudan.plus1.Interfaces;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-public interface Counter {
+public interface AbstractCounter {
     // setter
     int setCounterInfo
     (String administrator, String counterName, double value, double step, String unit);

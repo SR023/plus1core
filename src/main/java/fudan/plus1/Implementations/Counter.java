@@ -2,24 +2,25 @@ package fudan.plus1.Implementations;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-import fudan.plus1.Interfaces.Counter;
-class SingleUserCounter implements Counter{
-    private final String counterId;
-    private final String creator;
+import fudan.plus1.Interfaces.AbstractCounter;
+class Counter implements AbstractCounter {
+    private String counterId;
+    private String administrator;
 
     private String counterName;
     private double value;
     private double step;
     private String unit;
 
-    SingleUserCounter (String counterId, String creator) {
+    Counter() {}
+    Counter(String counterId) {
         this.counterId = counterId;
-        this.creator = creator;
     }
 
     
     public int setCounterInfo
-            (String counterName, double value, double step, String unit) {
+            (String administrator, String counterName, double value, double step, String unit) {
+        this.administrator = administrator;
         this.counterName = counterName;
         this.value = value;
         this.step = step;
@@ -63,8 +64,8 @@ class SingleUserCounter implements Counter{
         return unit;
     }
     
-    public String getCreator() {
-        return creator;
+    public String getAdministrator() {
+        return administrator;
     }
     
     public String getCounterId() {
@@ -78,6 +79,6 @@ class SingleUserCounter implements Counter{
 
     
     public boolean isCreatedBy(String username) {
-        return this.creator.equals(username);
+        return this.administrator.equals(username);
     }
 }

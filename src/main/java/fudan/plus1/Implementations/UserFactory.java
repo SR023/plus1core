@@ -1,18 +1,19 @@
 package fudan.plus1.Implementations;
 
-import fudan.plus1.Interfaces.AbstractUserProcessor;
+import fudan.plus1.Interfaces.AbstractUser;
+import fudan.plus1.Interfaces.AbstractUserFactory;
 import fudan.plus1.Kits.*;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-class UserProcessor implements AbstractUserProcessor {
-    private static UserProcessor ourInstance = new UserProcessor();
+class UserFactory implements AbstractUserFactory {
+    private static UserFactory ourInstance = new UserFactory();
 
-    static UserProcessor getInstance() {
+    static UserFactory getInstance() {
         return ourInstance;
     }
 
-    private UserProcessor() {
+    private UserFactory() {
     }
 
     
@@ -31,5 +32,9 @@ class UserProcessor implements AbstractUserProcessor {
     public int createUser(String username, String password) {
         // TODO
         return Finals.SIGN_UP_SUCCEEDED;
+    }
+
+    public AbstractUser findUser(String username) {
+        return null; // TODO
     }
 }
