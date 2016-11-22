@@ -19,6 +19,10 @@ POST **/services/usercreation**
 + username
 + password
 
+返回JSON
+
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
+
 ##### 登录
 
 GET **/services/verification**
@@ -30,8 +34,7 @@ GET **/services/verification**
 
 返回JSON，包含
 
-+ username
-+ success: "yes" or "no"
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 ##### 创建新计数器
 
@@ -60,35 +63,55 @@ GET **/users/{*username*}/counters**
     + unit
     + creator
 
-##### 获取一个计数器
+##### ~~获取一个计数器~~
 
 GET **/counters/{*counterId*}**
 
-返回JSON
+~~返回JSON~~
 
-+ counter
-  + counterId
-  + counterName
-  + value
-  + step
-  + unit
-  + creator
++ ~~counter~~
+  + ~~counterId~~
+  + ~~counterName~~
+  + ~~value~~
+  + ~~step~~
+  + ~~unit~~
+  + ~~creator~~
 
 ##### 添加已有计数器
 
 POST **/users/{*username*}/{*counterId*}**
 
+返回JSON，包含
+
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
+
 ##### 计数加
 
 POST **/services/incresement/{*counterId*}**
+
+返回JSON，包含
+
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 ##### 计数减
 
 POST **/services/decreasement/{*counterId*}**
 
+返回JSON，包含
+
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
+
 ##### 删除计数器
 
 DELETE **/services/counterdeletion/{*counterId*}**
+
+接受JSON，包含
+
++ administrator
+
+返回JSON，包含
+
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 ##### 改变计数器
 
@@ -96,10 +119,13 @@ PUT **/services/countermodification**
 
 接受JSON
 
-+ counter
-  + counterId
-  + counterName
-  + value
-  + step
-  + unit
-  + creator
++ administrator
++ counterId
++ counterName
++ value
++ step
++ unit
+
+返回JSON，包含
+
++ return: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）

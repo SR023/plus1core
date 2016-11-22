@@ -38,16 +38,6 @@ class Counter implements AbstractCounter {
         return 0;
     }
     
-    public int count() {
-        return count(false);
-    }
-
-    
-    public boolean isSingleUserMode() {
-        return true;
-    }
-
-    
     public String getCounterName() {
         return counterName;
     }
@@ -70,15 +60,5 @@ class Counter implements AbstractCounter {
     
     public String getCounterId() {
         return counterId;
-    }
-
-    
-    public boolean isThisCounter(String counterId) {
-        return this.counterId.equals(counterId);
-    }
-
-    
-    public boolean isCreatedBy(String username) {
-        return this.administrator.equals(username);
     }
 }

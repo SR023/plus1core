@@ -1,7 +1,9 @@
 package fudan.plus1.Implementations;
 
+import java.util.ArrayList;
 import java.util.List;
 import fudan.plus1.Interfaces.*;
+import fudan.plus1.Kits.Finals;
 import org.jetbrains.annotations.Nullable;
 
 public class Plus1System implements AbstractSystem {
@@ -12,13 +14,6 @@ public class Plus1System implements AbstractSystem {
     private Plus1System() {
     }
 
-    @Nullable
-    private AbstractCounter findCounter(String counterId) {
-        // TODO
-        return null;
-    }
-
-    
     public int createUser(String username, String password) {
         return UserFactory.getInstance().createUser(username, password);
     }
@@ -30,37 +25,44 @@ public class Plus1System implements AbstractSystem {
 
     
     public int signIn(String username, String password) {
-        int signInResult = UserFactory.getInstance().signIn(username, password);
-        return signInResult;
+        return UserFactory.getInstance().signIn(username, password);
     }
 
     
-    public int createCounter(String administrator, String counterName, double value, double step, String unit) {
-        AbstractCounter counter = CounterFactory.getInstance().
-                createCounter(administrator, counterName, value, step, unit);
-        return 0; // TODO
+    public void createCounter(String administrator, String counterName, double value, double step, String unit) {
+        CounterFactory.getInstance().createCounter(administrator, counterName, value, step, unit);
     }
 
     
     public int addMultiUserCounter(String username, String counterId) {
-        // TODO
-        return 0;
+        AbstractUser user = UserFactory.getInstance().findUser(username);
+        if (user == null) {
+            return Finals.USER_NOT_EXIST;
+        } else {
+            return user.addMultiUserCounter(counterId);
+        }
     }
 
     
     public int count(String counterId) {
-        return findCounter(counterId).count();
+        return count(counterId, false);
     }
 
     
     public int count(String counterId, boolean isMinus) {
-        return findCounter(counterId).count(isMinus);
+        try {
+            AbstractCounter counter = CounterFactory.getInstance().findCounter(counterId);
+            counter.count(isMinus);
+            return 0;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return Finals.COUNTER_NOT_EXIST;
+        }
     }
 
     
-    public int deleteCounter(String counterId) {
-        // TODO
-        return 0;
+    public int deleteCounter(String administrator, String counterId) {
+        return CounterFactory.getInstance().deleteCounter(administrator, counterId);
     }
 
     
@@ -71,19 +73,28 @@ public class Plus1System implements AbstractSystem {
             double value,
             double step,
             String unit) {
-        AbstractCounter abstractCounter = findCounter(counterId);
-        abstractCounter.setCounterInfo(administrator, counterName, value, step, unit);
-        return 0;
+        AbstractCounter counter;
+        try {
+            counter = CounterFactory.getInstance().findCounter(counterId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return Finals.COUNTER_NOT_EXIST;
+        }
+        if (counter.getAdministrator().equals(administrator)) {
+            counter.setCounterInfo(administrator, counterName, value, step, unit);
+            return 0;
+        } else {
+            return Finals.COUNTER_ADMINISTRATOR_VERIFICATION_ERROR;
+        }
     }
 
     
     public List<AbstractCounter> getCounters(String username) {
-        return null; // TODO
-    }
-
-
-    
-    public boolean isCounterCreatedByMe(String counterId) {
-        return findCounter(counterId).getCounterId().equals(counterId);
+        AbstractUser user = UserFactory.getInstance().findUser(username);
+        if (user == null) {
+            return new ArrayList<AbstractCounter>();
+        } else {
+            return user.getCounters();
+        }
     }
 }

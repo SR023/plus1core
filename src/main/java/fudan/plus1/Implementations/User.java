@@ -2,6 +2,7 @@ package fudan.plus1.Implementations;
 
 import fudan.plus1.Interfaces.AbstractCounter;
 import fudan.plus1.Interfaces.AbstractUser;
+import fudan.plus1.Kits.Finals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,23 @@ public class User implements AbstractUser {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean isPasswordCorrect(String password) {
+        return this.password.equals(password);
     }
 
     public List<AbstractCounter> getCounters() {
         return counters;
+    }
+
+    public int addMultiUserCounter(String counterId) {
+        AbstractCounter counter;
+        try {
+            counter = CounterFactory.getInstance().findCounter(counterId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return Finals.COUNTER_NOT_EXIST;
+        }
+        counters.add(counter);
+        return 0;
     }
 }

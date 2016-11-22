@@ -8,9 +8,6 @@ public interface AbstractCounter {
     int setCounterInfo
     (String administrator, String counterName, double value, double step, String unit);
 
-    // when looking for some counter
-    boolean isThisCounter(String CounterId);
-
     // getters
     String getCounterName();
     double getValue();
@@ -20,6 +17,5 @@ public interface AbstractCounter {
     String getCounterId();
 
     // count
-    int count();
     int count(boolean isMinus);
 }

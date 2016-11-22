@@ -1,7 +1,12 @@
 package fudan.plus1.Implementations;
 import fudan.plus1.Interfaces.AbstractCounterFactory;
 import fudan.plus1.Interfaces.AbstractCounter;
+import fudan.plus1.Kits.Finals;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,12 +18,14 @@ import java.math.BigInteger;
 class CounterFactory implements AbstractCounterFactory {
     private final Random random = new Random(new Date().getTime());
     private static CounterFactory ourInstance = new CounterFactory();
+    private Map<String, AbstractCounter> counters;
 
     static CounterFactory getInstance() {
         return ourInstance;
     }
 
     private CounterFactory() {
+        counters = new HashMap<String, AbstractCounter>();
     }
 
     public AbstractCounter createCounter (
@@ -27,16 +34,18 @@ class CounterFactory implements AbstractCounterFactory {
             double value,
             double step,
             String unit) {
+
         String counterId = gernerateCounterId(administrator);
-        AbstractCounter counter = new Counter(administrator);
+
+        AbstractCounter counter = new Counter(counterId);
         counter.setCounterInfo(administrator, counterName, value, step, unit);
         return counter;
     }
-    private String gernerateCounterId(String creator) { // TODO
+    private String gernerateCounterId(String creator) {
         String id = null;
         long time = new Date().getTime();
         long rand = random.nextLong();
-        String s = id + " " + rand;
+        String s = creator + " " + rand;
         String signature = null;
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
@@ -47,5 +56,30 @@ class CounterFactory implements AbstractCounterFactory {
         }
 
         return signature == null ? s + time : signature + time;
+    }
+
+    public AbstractCounter findCounter(String counterId) throws NullPointerException {
+        AbstractCounter counter = counters.get(counterId);
+        if (counter == null) {
+            throw new NullPointerException();
+        } else {
+            return counter;
+        }
+    }
+
+    public int deleteCounter(String administrator, String counterId) {
+        AbstractCounter counter;
+        try {
+            counter = findCounter(counterId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return Finals.COUNTER_NOT_EXIST;
+        }
+        if (counter.getAdministrator().equals(administrator)) {
+            counters.remove(administrator);
+            return 0;
+        } else {
+            return Finals.COUNTER_ADMINISTRATOR_VERIFICATION_ERROR;
+        }
     }
 }

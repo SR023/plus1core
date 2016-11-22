@@ -12,4 +12,6 @@ public interface AbstractCounterFactory {
                                   String unit);
 
     AbstractCounter findCounter(String counterId);
+
+    int deleteCounter(String administrator, String counterId);
 }

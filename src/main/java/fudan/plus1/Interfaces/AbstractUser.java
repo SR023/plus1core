@@ -7,4 +7,12 @@ import java.util.List;
  */
 public interface AbstractUser {
     List<AbstractCounter> getCounters();
+
+    boolean isPasswordCorrect(String password);
+
+    void setPassword(String password);
+
+    String getUsername();
+
+    int addMultiUserCounter(String counterId);
 }
