@@ -131,7 +131,7 @@ GET **/counters/{*counterId*}**
 ##### [x] 计数加
 
 
-POST **/counterse/{*counterId*}/increase**
+POST **/counters/{*counterId*}/increase**
 
 返回JSON，包含
 
