@@ -28,7 +28,7 @@ class CounterFactory implements AbstractCounterFactory {
         counters = new HashMap<String, AbstractCounter>();
     }
 
-    public AbstractCounter createCounter (
+    public String createCounter (
             String administrator,
             String counterName,
             double value,
@@ -39,7 +39,7 @@ class CounterFactory implements AbstractCounterFactory {
 
         AbstractCounter counter = new Counter(counterId);
         counter.setCounterInfo(administrator, counterName, value, step, unit);
-        return counter;
+        return counterId;
     }
     private String gernerateCounterId(String creator) {
         String id = null;
@@ -64,22 +64,6 @@ class CounterFactory implements AbstractCounterFactory {
             throw new NullPointerException();
         } else {
             return counter;
-        }
-    }
-
-    public int deleteCounter(String administrator, String counterId) {
-        AbstractCounter counter;
-        try {
-            counter = findCounter(counterId);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return Finals.COUNTER_NOT_EXIST;
-        }
-        if (counter.getAdministrator().equals(administrator)) {
-            counters.remove(administrator);
-            return 0;
-        } else {
-            return Finals.COUNTER_ADMINISTRATOR_VERIFICATION_ERROR;
         }
     }
 }

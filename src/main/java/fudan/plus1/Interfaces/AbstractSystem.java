@@ -11,7 +11,7 @@ public interface AbstractSystem {
      int signIn(String username, String password);
 
     // create counter
-    void createCounter(
+    int createCounter(
             String administrator,
             String counterName,
             double value,
@@ -25,7 +25,7 @@ public interface AbstractSystem {
     int count(String counterId, boolean isMinus);
 
     // delete
-    int deleteCounter(String administrator, String counterId);
+    int deleteCounter(String username, String counterId);
 
     // change counter info
     int changeCounterInfo(
@@ -38,4 +38,6 @@ public interface AbstractSystem {
 
     // getter of Counters
     List<AbstractCounter> getCounters(String username);
+
+    AbstractCounter getCounter(String counterId);
 }

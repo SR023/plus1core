@@ -15,4 +15,6 @@ public interface AbstractUser {
     String getUsername();
 
     int addMultiUserCounter(String counterId);
+
+    int deleteCounter(String counterId);
 }

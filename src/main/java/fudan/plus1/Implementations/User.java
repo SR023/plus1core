@@ -49,4 +49,20 @@ public class User implements AbstractUser {
         counters.add(counter);
         return 0;
     }
+
+    public int deleteCounter(String counterId) {
+        AbstractCounter toDelete = null;
+        for (AbstractCounter counter : counters) {
+            if (counter.getCounterId().equals(counterId)) {
+                toDelete = counter;
+                break;
+            }
+        }
+        if (toDelete != null) {
+            counters.remove(toDelete);
+            return 0;
+        } else {
+            return Finals.CANNOT_FIND_COUNTER;
+        }
+    }
 }

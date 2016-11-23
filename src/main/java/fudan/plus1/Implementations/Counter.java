@@ -3,6 +3,10 @@ package fudan.plus1.Implementations;
  * Created by billlai on 08/Oct/2016.
  */
 import fudan.plus1.Interfaces.AbstractCounter;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 class Counter implements AbstractCounter {
     private String counterId;
     private String administrator;

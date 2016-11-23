@@ -29,8 +29,9 @@ public class Plus1System implements AbstractSystem {
     }
 
     
-    public void createCounter(String administrator, String counterName, double value, double step, String unit) {
-        CounterFactory.getInstance().createCounter(administrator, counterName, value, step, unit);
+    public int createCounter(String administrator, String counterName, double value, double step, String unit) {
+        String id = CounterFactory.getInstance().createCounter(administrator, counterName, value, step, unit);
+        return addMultiUserCounter(administrator, id);
     }
 
     
@@ -61,8 +62,13 @@ public class Plus1System implements AbstractSystem {
     }
 
     
-    public int deleteCounter(String administrator, String counterId) {
-        return CounterFactory.getInstance().deleteCounter(administrator, counterId);
+    public int deleteCounter(String username, String counterId) {
+        AbstractUser user = UserFactory.getInstance().findUser(username);
+        if (user != null) {
+            return user.deleteCounter(counterId);
+        } else {
+            return Finals.USER_NOT_EXIST;
+        }
     }
 
     
@@ -96,5 +102,15 @@ public class Plus1System implements AbstractSystem {
         } else {
             return user.getCounters();
         }
+    }
+
+    public AbstractCounter getCounter(String counterId) {
+        AbstractCounter counter = null;
+        try {
+            counter = CounterFactory.getInstance().findCounter(counterId);
+        } catch (NullPointerException e) {
+            return new Counter();
+        }
+        return counter;
     }
 }
