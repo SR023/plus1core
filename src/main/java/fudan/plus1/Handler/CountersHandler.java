@@ -11,7 +11,7 @@ import java.util.List;
  * Created by billlai on 23/十一月/2016.
  */
 @Path("/users/{username}/counters")
-public class GettingCountersHandler {
+public class CountersHandler {
     @GET
     @Consumes("application/json")
     @Produces("application/json")

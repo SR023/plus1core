@@ -131,7 +131,7 @@ GET **/counters/{*counterId*}**
 ##### [x] 计数加
 
 
-POST **/services/incresement/{*counterId*}**
+POST **/counterse/{*counterId*}/increase**
 
 返回JSON，包含
 
@@ -140,7 +140,7 @@ POST **/services/incresement/{*counterId*}**
 ##### [x] 计数减
 
 
-POST **/services/decreasement/{*counterId*}**
+POST **/counters/{*counterId*}/decrease**
 
 返回JSON，包含
 
