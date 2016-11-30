@@ -7,7 +7,7 @@ import fudan.plus1.Interfaces.AbstractCounter;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-class Counter implements AbstractCounter {
+public class Counter implements AbstractCounter {
     private String counterId;
     private String administrator;
 

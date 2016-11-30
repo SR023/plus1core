@@ -62,7 +62,7 @@ public class User implements AbstractUser {
             counters.remove(toDelete);
             return 0;
         } else {
-            return Finals.CANNOT_FIND_COUNTER;
+            return Finals.COUNTER_NOT_EXIST;
         }
     }
 }

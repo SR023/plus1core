@@ -15,17 +15,21 @@ import java.math.BigInteger;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-class CounterFactory implements AbstractCounterFactory {
+public class CounterFactory implements AbstractCounterFactory {
     private final Random random = new Random(new Date().getTime());
     private static CounterFactory ourInstance = new CounterFactory();
     private Map<String, AbstractCounter> counters;
 
-    static CounterFactory getInstance() {
+    public static CounterFactory getInstance() {
         return ourInstance;
     }
 
     private CounterFactory() {
         counters = new HashMap<String, AbstractCounter>();
+    }
+
+    private void addCounter(String counterId, AbstractCounter counter) {
+        counters.put(counterId, counter);
     }
 
     public String createCounter (
@@ -39,6 +43,9 @@ class CounterFactory implements AbstractCounterFactory {
 
         AbstractCounter counter = new Counter(counterId);
         counter.setCounterInfo(administrator, counterName, value, step, unit);
+
+        addCounter(counterId, counter);
+
         return counterId;
     }
     private String gernerateCounterId(String creator) {

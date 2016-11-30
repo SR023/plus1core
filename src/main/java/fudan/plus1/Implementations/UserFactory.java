@@ -10,11 +10,11 @@ import java.util.Map;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-class UserFactory implements AbstractUserFactory {
+public class UserFactory implements AbstractUserFactory {
     private static UserFactory ourInstance = new UserFactory();
     private Map<String, AbstractUser> users;
 
-    static UserFactory getInstance() {
+    public static UserFactory getInstance() {
         return ourInstance;
     }
     private UserFactory() {

@@ -83,7 +83,8 @@ public class Plus1System implements AbstractSystem {
         try {
             counter = CounterFactory.getInstance().findCounter(counterId);
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            // System.out.println(e.getMessage());
             return Finals.COUNTER_NOT_EXIST;
         }
         if (counter.getAdministrator().equals(administrator)) {

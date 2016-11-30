@@ -1,7 +1,7 @@
 # Plus1Core
 The core part of plus1.
 ## The API of the server:
-##### [x] 验证用户名是否存在
+##### [xx]验证用户名是否存在
 
 
 GET **/services/userexistence/{*username*}**
@@ -12,7 +12,7 @@ GET **/services/userexistence/{*username*}**
 + existence: "yes" or "no"
 
 
-##### [x] 注册
+##### [xx] 注册
 
 POST **/services/usercreation**
 
@@ -25,7 +25,7 @@ POST **/services/usercreation**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [x] 登录
+##### [xx] 登录
 
 
 GET **/services/verification**
@@ -40,7 +40,7 @@ GET **/services/verification**
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 
-##### [x] 创建新计数器
+##### [xx] 创建新计数器
 
 POST **/services/countercreation**
 
@@ -56,7 +56,7 @@ POST **/services/countercreation**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [x] 获取用户的所有计数器
+##### [xx] 获取用户的所有计数器
 
 
 GET **/users/{*username*}/counters**
@@ -73,7 +73,7 @@ GET **/users/{*username*}/counters**
     + unit
 
 
-##### [x] 添加已有计数器
+##### [xx] 添加已有计数器
 
 
 POST **/users/{*username*}/{*counterId*}**
@@ -83,7 +83,7 @@ POST **/users/{*username*}/{*counterId*}**
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 
-##### [x] 删除计数器
+##### [xx] 删除计数器
 
 
 DELETE **/users/{*username}*/{*counterId*}**
@@ -96,7 +96,7 @@ DELETE **/users/{*username}*/{*counterId*}**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [x] 改变计数器
+##### [xx] 改变计数器
 
 
 PUT **/users/{username}/{counterId}**
@@ -114,7 +114,7 @@ PUT **/users/{username}/{counterId}**
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 
-##### [x] 获取一个计数器
+##### [xx] 获取一个计数器
 
 GET **/counters/{*counterId*}**
 
@@ -128,7 +128,7 @@ GET **/counters/{*counterId*}**
   + unit
   + administrator
 
-##### [x] 计数加
+##### [xx] 计数加
 
 
 POST **/counters/{*counterId*}/increase**
@@ -137,7 +137,7 @@ POST **/counters/{*counterId*}/increase**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [x] 计数减
+##### [xx] 计数减
 
 
 POST **/counters/{*counterId*}/decrease**
