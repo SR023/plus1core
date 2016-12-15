@@ -1,7 +1,5 @@
 package fudan.plus1.Implementations;
 
-import fudan.plus1.Interfaces.AbstractUser;
-import fudan.plus1.Interfaces.AbstractUserFactory;
 import fudan.plus1.Kits.*;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,15 +8,15 @@ import java.util.Map;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-public class UserFactory implements AbstractUserFactory {
+public class UserFactory {
     private static UserFactory ourInstance = new UserFactory();
-    private Map<String, AbstractUser> users;
+    private Map<String, User> users;
 
     public static UserFactory getInstance() {
         return ourInstance;
     }
     private UserFactory() {
-        users = new HashMap<String, AbstractUser>();
+        users = new HashMap<String, User>();
     }
 
     
@@ -45,8 +43,7 @@ public class UserFactory implements AbstractUserFactory {
         return 0;
     }
 
-    @Nullable
-    public AbstractUser findUser(String username) {
+    public User findUser(String username) {
         return users.get(username);
     }
 }

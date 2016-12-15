@@ -1,7 +1,5 @@
 package fudan.plus1.Implementations;
 
-import fudan.plus1.Interfaces.AbstractCounter;
-import fudan.plus1.Interfaces.AbstractUser;
 import fudan.plus1.Kits.Finals;
 
 import java.util.ArrayList;
@@ -10,16 +8,16 @@ import java.util.List;
 /**
  * Created by billlai on 21/十一月/2016.
  */
-public class User implements AbstractUser {
+public class User {
     private String username;
     private String password;
-    private List<AbstractCounter> counters;
+    private List<Counter> counters;
 
     User() { }
     User(String username, String password) {
         this.username = username;
         this.password = password;
-        counters = new ArrayList<AbstractCounter>();
+        counters = new ArrayList<Counter>();
     }
 
     public void setPassword(String password) {
@@ -34,12 +32,12 @@ public class User implements AbstractUser {
         return this.password.equals(password);
     }
 
-    public List<AbstractCounter> getCounters() {
+    public List<Counter> getCounters() {
         return counters;
     }
 
     public int addMultiUserCounter(String counterId) {
-        AbstractCounter counter;
+        Counter counter;
         try {
             counter = CounterFactory.getInstance().findCounter(counterId);
         } catch (NullPointerException e) {
@@ -51,8 +49,8 @@ public class User implements AbstractUser {
     }
 
     public int deleteCounter(String counterId) {
-        AbstractCounter toDelete = null;
-        for (AbstractCounter counter : counters) {
+        Counter toDelete = null;
+        for (Counter counter : counters) {
             if (counter.getCounterId().equals(counterId)) {
                 toDelete = counter;
                 break;

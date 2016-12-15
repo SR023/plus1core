@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Result {
-    private int result = 0;
+    public int result = 0;
     public Result() { }
     public Result(int result) {
         this.result = result;

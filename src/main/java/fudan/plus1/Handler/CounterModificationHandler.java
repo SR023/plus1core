@@ -4,6 +4,7 @@ import fudan.plus1.Implementations.Plus1System;
 import fudan.plus1.JsonTypes.Result;
 import fudan.plus1.Kits.Finals;
 import org.codehaus.jettison.json.JSONObject;
+import javax.ws.rs.core.MediaType;
 
 import javax.ws.rs.*;
 
@@ -13,24 +14,24 @@ import javax.ws.rs.*;
 @Path("/users/{username}/{counterId}")
 public class CounterModificationHandler {
     @POST
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Result postCounter(
             JSONObject json, @PathParam("username") String username, @PathParam("counterId") String id) {
         return new Result(Plus1System.getInstance().addMultiUserCounter(username, id));
     }
 
+//    @Path("/counterdeletion/{username}/{counterId}")
     @DELETE
-    @Produces("applicaion/json")
-    @Consumes("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     public Result deleteCounter(
-            JSONObject json, @PathParam("username") String username, @PathParam("counterId") String id) {
+            @PathParam("username") String username, @PathParam("counterId") String id) {
         return new Result(Plus1System.getInstance().deleteCounter(username, id));
     }
 
     @PUT
-    @Produces("application/json")
-    @Consumes("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Result putCounter(
             JSONObject json, @PathParam("username") String username, @PathParam("counterId") String id) {
         String administrator;

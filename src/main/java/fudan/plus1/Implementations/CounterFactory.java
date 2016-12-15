@@ -1,6 +1,4 @@
 package fudan.plus1.Implementations;
-import fudan.plus1.Interfaces.AbstractCounterFactory;
-import fudan.plus1.Interfaces.AbstractCounter;
 import fudan.plus1.Kits.Finals;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,20 +13,20 @@ import java.math.BigInteger;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-public class CounterFactory implements AbstractCounterFactory {
+public class CounterFactory {
     private final Random random = new Random(new Date().getTime());
     private static CounterFactory ourInstance = new CounterFactory();
-    private Map<String, AbstractCounter> counters;
+    private Map<String, Counter> counters;
 
     public static CounterFactory getInstance() {
         return ourInstance;
     }
 
     private CounterFactory() {
-        counters = new HashMap<String, AbstractCounter>();
+        counters = new HashMap<String, Counter>();
     }
 
-    private void addCounter(String counterId, AbstractCounter counter) {
+    private void addCounter(String counterId, Counter counter) {
         counters.put(counterId, counter);
     }
 
@@ -41,13 +39,13 @@ public class CounterFactory implements AbstractCounterFactory {
 
         String counterId = gernerateCounterId(administrator);
 
-        AbstractCounter counter = new Counter(counterId);
+        Counter counter = new Counter(counterId);
         counter.setCounterInfo(administrator, counterName, value, step, unit);
-
         addCounter(counterId, counter);
 
         return counterId;
     }
+
     private String gernerateCounterId(String creator) {
         String id = null;
         long time = new Date().getTime();
@@ -65,8 +63,8 @@ public class CounterFactory implements AbstractCounterFactory {
         return signature == null ? s + time : signature + time;
     }
 
-    public AbstractCounter findCounter(String counterId) throws NullPointerException {
-        AbstractCounter counter = counters.get(counterId);
+    public Counter findCounter(String counterId) throws NullPointerException {
+        Counter counter = counters.get(counterId);
         if (counter == null) {
             throw new NullPointerException();
         } else {

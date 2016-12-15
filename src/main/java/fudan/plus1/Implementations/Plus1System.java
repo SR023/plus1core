@@ -2,11 +2,10 @@ package fudan.plus1.Implementations;
 
 import java.util.ArrayList;
 import java.util.List;
-import fudan.plus1.Interfaces.*;
 import fudan.plus1.Kits.Finals;
 import org.jetbrains.annotations.Nullable;
 
-public class Plus1System implements AbstractSystem {
+public class Plus1System {
     private static Plus1System ourInstance = new Plus1System();
     public static Plus1System getInstance() {
         return ourInstance;
@@ -36,7 +35,7 @@ public class Plus1System implements AbstractSystem {
 
     
     public int addMultiUserCounter(String username, String counterId) {
-        AbstractUser user = UserFactory.getInstance().findUser(username);
+        User user = UserFactory.getInstance().findUser(username);
         if (user == null) {
             return Finals.USER_NOT_EXIST;
         } else {
@@ -52,7 +51,7 @@ public class Plus1System implements AbstractSystem {
     
     public int count(String counterId, boolean isMinus) {
         try {
-            AbstractCounter counter = CounterFactory.getInstance().findCounter(counterId);
+            Counter counter = CounterFactory.getInstance().findCounter(counterId);
             counter.count(isMinus);
             return 0;
         } catch (NullPointerException e) {
@@ -63,7 +62,7 @@ public class Plus1System implements AbstractSystem {
 
     
     public int deleteCounter(String username, String counterId) {
-        AbstractUser user = UserFactory.getInstance().findUser(username);
+        User user = UserFactory.getInstance().findUser(username);
         if (user != null) {
             return user.deleteCounter(counterId);
         } else {
@@ -79,7 +78,7 @@ public class Plus1System implements AbstractSystem {
             double value,
             double step,
             String unit) {
-        AbstractCounter counter;
+        Counter counter;
         try {
             counter = CounterFactory.getInstance().findCounter(counterId);
         } catch (NullPointerException e) {
@@ -96,17 +95,17 @@ public class Plus1System implements AbstractSystem {
     }
 
     
-    public List<AbstractCounter> getCounters(String username) {
-        AbstractUser user = UserFactory.getInstance().findUser(username);
+    public List<Counter> getCounters(String username) {
+        User user = UserFactory.getInstance().findUser(username);
         if (user == null) {
-            return new ArrayList<AbstractCounter>();
+            return new ArrayList<Counter>();
         } else {
             return user.getCounters();
         }
     }
 
-    public AbstractCounter getCounter(String counterId) {
-        AbstractCounter counter = null;
+    public Counter getCounter(String counterId) {
+        Counter counter = null;
         try {
             counter = CounterFactory.getInstance().findCounter(counterId);
         } catch (NullPointerException e) {

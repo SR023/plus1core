@@ -1,3 +1,4 @@
+/*
 package fudan.plus1.Test;
 
 import fudan.plus1.Implementations.CounterFactory;
@@ -16,9 +17,11 @@ import java.util.List;
 import java.util.Random;
 import fudan.plus1.Interfaces.*;
 
+*/
 /**
  * Created by billlai on 09/Oct/2016.
- */
+ *//*
+
 public class Plus1SystemTest {
     private String username = "LaiWenxing";
     private Plus1System system;
@@ -104,3 +107,4 @@ public class Plus1SystemTest {
     }
 
 }
+*/

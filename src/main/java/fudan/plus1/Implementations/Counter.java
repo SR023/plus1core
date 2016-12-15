@@ -2,19 +2,19 @@ package fudan.plus1.Implementations;
 /**
  * Created by billlai on 08/Oct/2016.
  */
-import fudan.plus1.Interfaces.AbstractCounter;
+import fudan.plus1.Implementations.Counter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Counter implements AbstractCounter {
-    private String counterId;
-    private String administrator;
+public class Counter {
+    public String counterId;
+    public String administrator;
 
-    private String counterName;
-    private double value;
-    private double step;
-    private String unit;
+    public String counterName;
+    public double value;
+    public double step;
+    public String unit;
 
     Counter() {}
     Counter(String counterId) {

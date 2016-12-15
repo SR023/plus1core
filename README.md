@@ -1,7 +1,13 @@
 # Plus1Core
-The core part of plus1.
+## 使用
+
+```shell
+cd .
+mvn clean compile -PcheckstyleSkip exec:java
+```
+
 ## The API of the server:
-##### [xx]验证用户名是否存在
+##### [xxx]验证用户名是否存在
 
 
 GET **/services/userexistence/{*username*}**
@@ -9,10 +15,10 @@ GET **/services/userexistence/{*username*}**
 返回JSON，包含
 
 + username
-+ existence: "yes" or "no"
++ available: "yes" or "no"
 
 
-##### [xx] 注册
+##### [xxx] 注册
 
 POST **/services/usercreation**
 
@@ -25,22 +31,17 @@ POST **/services/usercreation**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [xx] 登录
+##### [xxx] 登录
 
 
-GET **/services/verification**
-
-接受JSON，包含
-
-+ username
-+ password
+GET **/services/verification/{*username*}/{*password*}**
 
 返回JSON，包含
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 
-##### [xx] 创建新计数器
+##### [xxx] 创建新计数器
 
 POST **/services/countercreation**
 
@@ -56,7 +57,7 @@ POST **/services/countercreation**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [xx] 获取用户的所有计数器
+##### [xxx] 获取用户的所有计数器
 
 
 GET **/users/{*username*}/counters**
@@ -73,7 +74,7 @@ GET **/users/{*username*}/counters**
     + unit
 
 
-##### [xx] 添加已有计数器
+##### [xxx] 添加已有计数器
 
 
 POST **/users/{*username*}/{*counterId*}**
@@ -83,7 +84,7 @@ POST **/users/{*username*}/{*counterId*}**
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 
-##### [xx] 删除计数器
+##### [xxx] 删除计数器
 
 
 DELETE **/users/{*username}*/{*counterId*}**
@@ -96,7 +97,7 @@ DELETE **/users/{*username}*/{*counterId*}**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [xx] 改变计数器
+##### [xxx] 改变计数器
 
 
 PUT **/users/{username}/{counterId}**
@@ -114,7 +115,7 @@ PUT **/users/{username}/{counterId}**
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
 
-##### [xx] 获取一个计数器
+##### [xxx] 获取一个计数器
 
 GET **/counters/{*counterId*}**
 
@@ -128,7 +129,7 @@ GET **/counters/{*counterId*}**
   + unit
   + administrator
 
-##### [xx] 计数加
+##### [xxx] 计数加
 
 
 POST **/counters/{*counterId*}/increase**
@@ -137,7 +138,7 @@ POST **/counters/{*counterId*}/increase**
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
 
-##### [xx] 计数减
+##### [xxx] 计数减
 
 
 POST **/counters/{*counterId*}/decrease**

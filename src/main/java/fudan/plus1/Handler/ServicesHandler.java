@@ -4,8 +4,9 @@ import fudan.plus1.Implementations.Plus1System;
 import fudan.plus1.JsonTypes.Result;
 import fudan.plus1.JsonTypes.UserExistence;
 import fudan.plus1.Kits.Finals;
-import org.codehaus.jettison.json.JSONObject;
 
+import org.codehaus.jettison.json.JSONObject;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.*;
 
 /**
@@ -15,22 +16,18 @@ import javax.ws.rs.*;
 public class ServicesHandler {
     @Path("/userexistence/{username}")
     @GET
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     public UserExistence getUserExistence(@PathParam("username") String username) {
         boolean isUserNameAvailable = Plus1System.getInstance().isUsernameAvailable(username);
         String existence = "" + (isUserNameAvailable ? "yes" : "no");
-        return new UserExistence(username, existence);
+        UserExistence userExistence = new UserExistence(username, existence);
+        return userExistence;
     }
 
-    @Path("/verification")
+    @Path("/verification/{username}/{password}")
     @GET
-    @Consumes("application/json")
-    @Produces("application/json")
-    public Result getVerification(JSONObject json) {
-        String username = null;
-        String password = null;
-        username = json.optString("username");
-        password = json.optString("password");
+    @Produces(MediaType.APPLICATION_JSON)
+    public Result getVerification(@PathParam("username") String username, @PathParam("password") String password) {
         if (username == null || password == null) {
             return new Result(Finals.INFO_MISSING);
         } else {
@@ -40,8 +37,8 @@ public class ServicesHandler {
 
     @Path("/countercreation")
     @POST
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Result postCounterCreation(JSONObject json) {
         String administrator = null;
         String counterName = null;
@@ -73,8 +70,8 @@ public class ServicesHandler {
 
     @Path("/usercreation")
     @POST
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Result postUserCreation(JSONObject json) {
         String username = null;
         String password = null;
