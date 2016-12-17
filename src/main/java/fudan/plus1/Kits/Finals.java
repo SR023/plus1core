@@ -14,4 +14,5 @@ public class Finals {
     public static final int COUNTER_ADMINISTRATOR_VERIFICATION_ERROR = 5;
     public static final int INFO_MISSING = 7;
     public static final int PARSING_ERROR = 8;
+    public static final int DUPLICATED_COUNTER = 9;
 }
