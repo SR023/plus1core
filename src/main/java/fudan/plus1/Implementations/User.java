@@ -49,10 +49,16 @@ public class User {
             e.printStackTrace();
             return Finals.COUNTER_NOT_EXIST;
         }
+        for (Counter counterIn : counters) {
+            if (counter.getCounterId().equals(counterIn.getCounterId())) {
+                return Finals.DUPLICATED_COUNTER;
+            }
+        }
         counters.add(counter);
         
         return 0;
     }
+
 
     public int deleteCounter(String counterId) {
         Counter toDelete = null;
