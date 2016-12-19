@@ -2,9 +2,14 @@
 ## 使用
 
 ```shell
+sudo apt-get install mysql-server
+修改 SQLValue.java  database user password
 cd .
 mvn clean compile -PcheckstyleSkip exec:java
 ```
+
+
+
 
 ## The API of the server:
 ##### [xxx]验证用户名是否存在
