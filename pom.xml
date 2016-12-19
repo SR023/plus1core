@@ -70,15 +70,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.2.21.Final</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/hibernate/hibernate-core-4.2.21.Final.jar</systemPath>
-        </dependency>
-
-
-        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>15.0</version>

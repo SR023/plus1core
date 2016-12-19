@@ -3,7 +3,6 @@ package fudan.plus1.Implementations;
 import fudan.plus1.Kits.*;
 import fudan.plus1.Persistence.*;
 
-import org.hibernate.HibernateException;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;

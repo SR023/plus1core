@@ -45,7 +45,7 @@ GET **/services/verification/{*username*}/{*password*}**
 
 POST **/services/countercreation**
 
-curl -i -H "Content-Type: application/json"  -X POST -d '{"administrator":"rikka","counterName":"testcounter","value":0,"step":1,"unit":"s"}' 127.0.0.1:8080/services/countercreation
+curl -i -H "Content-Type: application/json"  -X POST -d '{"administrator":"rikka","counterName":"testcounter","value":"0","step":"1","unit":"s"}' 127.0.0.1:8080/services/countercreation
 
 
 接受JSON，包含
@@ -134,6 +134,7 @@ GET **/counters/{*counterId*}**
 
 ##### [xxx] 计数加
 
+curl -X POST 127.0.0.1:8080/counters/testid/increase
 
 POST **/counters/{*counterId*}/increase**
 
