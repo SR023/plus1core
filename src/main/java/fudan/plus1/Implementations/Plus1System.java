@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import fudan.plus1.Kits.Finals;
 import org.jetbrains.annotations.Nullable;
+import fudan.plus1.Persistence.*;
 
 public class Plus1System {
     private static Plus1System ourInstance = new Plus1System();
@@ -53,6 +54,7 @@ public class Plus1System {
         try {
             Counter counter = CounterFactory.getInstance().findCounter(counterId);
             counter.count(isMinus);
+            PersistenceUser.getInstance().updateCounter(counter);//persistence
             return 0;
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -88,6 +90,7 @@ public class Plus1System {
         }
         if (counter.getAdministrator().equals(administrator)) {
             counter.setCounterInfo(administrator, counterName, value, step, unit);
+            PersistenceUser.getInstance().updateCounter(counter);//persistence
             return 0;
         } else {
             return Finals.COUNTER_ADMINISTRATOR_VERIFICATION_ERROR;

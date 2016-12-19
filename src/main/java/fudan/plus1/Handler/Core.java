@@ -9,7 +9,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jettison.JettisonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
-
+import fudan.plus1.Persistence.PersistenceUser;
 
 /**
  * Created by billlai on 14/十二月/2016.
@@ -25,6 +25,8 @@ public class Core {
             System.out.println("Plus 1 core:");
 
             final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, createApp(), false);
+            PersistenceUser.getInstance().buildUserList();
+            PersistenceUser.getInstance().buildCounterList();
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 @Override
                 public void run() {

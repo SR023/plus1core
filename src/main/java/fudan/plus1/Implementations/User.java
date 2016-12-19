@@ -4,6 +4,7 @@ import fudan.plus1.Kits.Finals;
 
 import java.util.ArrayList;
 import java.util.List;
+import fudan.plus1.Persistence.*;
 
 /**
  * Created by billlai on 21/十一月/2016.
@@ -12,6 +13,7 @@ public class User {
     private String username;
     private String password;
     private List<Counter> counters;
+
 
     User() { }
     User(String username, String password) {
@@ -26,6 +28,9 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+    public String getPassword() {
+    	return password;
     }
 
     public boolean isPasswordCorrect(String password) {
@@ -45,6 +50,7 @@ public class User {
             return Finals.COUNTER_NOT_EXIST;
         }
         counters.add(counter);
+        
         return 0;
     }
 
@@ -58,6 +64,7 @@ public class User {
         }
         if (toDelete != null) {
             counters.remove(toDelete);
+
             return 0;
         } else {
             return Finals.COUNTER_NOT_EXIST;

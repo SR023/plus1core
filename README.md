@@ -1,4 +1,4 @@
-# Plus1Core
+#Plus1Core
 ## 使用
 
 ```shell
@@ -44,6 +44,9 @@ GET **/services/verification/{*username*}/{*password*}**
 ##### [xxx] 创建新计数器
 
 POST **/services/countercreation**
+
+curl -i -H "Content-Type: application/json"  -X POST -d '{"administrator":"rikka","counterName":"testcounter","value":0,"step":1,"unit":"s"}' 127.0.0.1:8080/services/countercreation
+
 
 接受JSON，包含
 

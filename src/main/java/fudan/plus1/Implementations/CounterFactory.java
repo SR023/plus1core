@@ -1,5 +1,7 @@
 package fudan.plus1.Implementations;
 import fudan.plus1.Kits.Finals;
+import fudan.plus1.Persistence.PersistenceUser;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
@@ -29,6 +31,23 @@ public class CounterFactory {
     private void addCounter(String counterId, Counter counter) {
         counters.put(counterId, counter);
     }
+    
+    public void createExistCounter(
+    		String counterId,
+            String administrator,
+            String counterName,
+            double value,
+            double step,
+            String unit) {
+        Counter counter = new Counter(counterId);
+        counter.setCounterInfo(administrator, counterName, value, step, unit);
+        addCounter(counterId, counter);
+        User user = UserFactory.getInstance().findUser(administrator);
+        if (user != null)
+        {
+        	user.addMultiUserCounter(counterId);
+        }
+    }
 
     public String createCounter (
             String administrator,
@@ -42,7 +61,7 @@ public class CounterFactory {
         Counter counter = new Counter(counterId);
         counter.setCounterInfo(administrator, counterName, value, step, unit);
         addCounter(counterId, counter);
-
+        PersistenceUser.getInstance().addCounter(counter);
         return counterId;
     }
 
