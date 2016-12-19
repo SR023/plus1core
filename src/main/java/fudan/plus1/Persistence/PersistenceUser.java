@@ -17,7 +17,7 @@ import fudan.plus1.Implementations.*;
 
 public class PersistenceUser{
 	
-	private Statement statement;
+	private Statement statement = null;
 	
     private static PersistenceUser ourInstance = new PersistenceUser();
 
@@ -56,6 +56,8 @@ public class PersistenceUser{
     }	
 	
     public void executeSql(String sql) {
+    if (statement == null)
+    	return;
     try
     {
         statement.execute(sql);
@@ -109,7 +111,8 @@ public class PersistenceUser{
 	
 	
 	public void buildUserList(){
-		
+		if (statement == null)
+			return;
 		String createsql = String.format("create table if not exists Users ("
 				+ "username VARCHAR(200) NOT NULL PRIMARY KEY,"
 				+ "password VARCHAR(200) NOT NULL);");
@@ -133,7 +136,8 @@ public class PersistenceUser{
 	}
 	
 	public void buildCounterList(){
-		
+		if (statement == null)
+			return;
 		String createsql = String.format("create table if not exists Counters ("
 				+ "counterid VARCHAR(200) NOT NULL PRIMARY KEY,"
 				+ "administrator VARCHAR(200) NOT NULL,"
