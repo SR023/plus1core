@@ -21,6 +21,15 @@ public class Counter {
         this.counterId = counterId;
     }
 
+    @Override
+    public String toString() {
+        return counterId + "," +
+                administrator + "," +
+                counterName + "," +
+                value + "," +
+                step + "," +
+                unit;
+    }
     
     public int setCounterInfo
             (String administrator, String counterName, double value, double step, String unit) {

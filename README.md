@@ -59,6 +59,7 @@ curl -i -H "Content-Type: application/json"  -X POST -d '{"administrator":"rikka
 返回JSON，包含
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
++ counterId: String
 
 ##### [xxx] 获取用户的所有计数器
 
@@ -150,3 +151,16 @@ POST **/counters/{*counterId*}/decrease**
 返回JSON，包含
 
 + result: 数字（0代表成功，其余请参见/fudan.plus1/Kits/Finals.java）
+
+##### 获取计数器（纯文本）信息
+
+GET **/info/{*counterId*}
+
+返回"text/plain"，具体信息由','隔开：
+
+counterId + "," + 
+                administrator + "," + 
+                counterName + "," + 
+                value + "," + 
+                step + "," +
+                unit
