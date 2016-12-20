@@ -1,6 +1,7 @@
 package fudan.plus1.Handler;
 
 import fudan.plus1.Implementations.Plus1System;
+import fudan.plus1.JsonTypes.CounterId;
 import fudan.plus1.JsonTypes.Result;
 import fudan.plus1.JsonTypes.UserExistence;
 import fudan.plus1.Kits.Finals;
@@ -53,7 +54,7 @@ public class ServicesHandler {
         unit = json.optString("unit");
 
         if (null == administrator || null == counterName || null == value || null == step || null == unit) {
-            return new Result(Finals.INFO_MISSING);
+            return new CounterId(Finals.INFO_MISSING);
         } else {
             double valueInDouble;
             double stepInDouble;
@@ -61,10 +62,10 @@ public class ServicesHandler {
                 valueInDouble = Double.parseDouble(value);
                 stepInDouble = Double.parseDouble(step);
             } catch (NumberFormatException e) {
-                return new Result(Finals.PARSING_ERROR);
+                return new CounterId(Finals.PARSING_ERROR);
             }
-            return new Result(Plus1System.getInstance().
-                    createCounter(administrator, counterName, valueInDouble, stepInDouble, unit));
+            return Plus1System.getInstance().
+                    createCounter(administrator, counterName, valueInDouble, stepInDouble, unit);
         }
     }
 

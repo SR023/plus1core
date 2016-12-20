@@ -2,6 +2,8 @@ package fudan.plus1.Implementations;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fudan.plus1.JsonTypes.CounterId;
 import fudan.plus1.Kits.Finals;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,9 +30,10 @@ public class Plus1System {
     }
 
     
-    public int createCounter(String administrator, String counterName, double value, double step, String unit) {
+    public CounterId createCounter(String administrator, String counterName, double value, double step, String unit) {
         String id = CounterFactory.getInstance().createCounter(administrator, counterName, value, step, unit);
-        return addMultiUserCounter(administrator, id);
+        int result = addMultiUserCounter(administrator, id);
+        return new CounterId(result, id);
     }
 
     
