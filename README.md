@@ -150,7 +150,7 @@ POST **/counters/{*counterId*}/decrease**
 
 ##### 获取计数器（纯文本）信息
 
-GET **/info/{*counterId*}
+GET **/info/{*counterId*}**
 
 返回"text/plain"，具体信息由','隔开：
 
